@@ -28,6 +28,18 @@ function Table({ label, tableData = [], onUpdate, sectionData }) {
     Summary: ["ΤΥΠΟΣ", "", "MOBILE.DE", "AUTOSCOUT24", ""],
   };
 
+  // List of headers to apply bold and green color
+  const greenBoldColumns = ["one", "two", "mo"];
+
+  // Function to open the link in a new tab
+  const openLink = (url) => {
+    if (url && url.startsWith("http")) {
+      window.open(url, "_blank");
+    } else {
+      alert("Invalid URL");
+    }
+  };
+
   return (
     <div className="table-container">
       <h3>
@@ -66,15 +78,39 @@ function Table({ label, tableData = [], onUpdate, sectionData }) {
                     (key === "type" || key === "link")) || // Editable type and link in Thessaloniki
                   (label === "Summary" && key !== "type"); // All except "type" editable in Summary
 
+                // Apply bold and green color for specific columns
+                const isGreenBold = greenBoldColumns.includes(key);
+
+                // Check if it's MOBILE.DE or AUTOSCOUT24 for showing the open link button
+                const isLinkColumn =
+                  key === "mobileDe" || key === "autoscout24" || key === "link";
+
                 return (
                   <td key={colIndex}>
                     <input
                       type="text"
                       value={row[key]}
                       onChange={(e) => handleInputChange(e, rowIndex, key)}
-                      className="table-input"
+                      className={`table-input ${
+                        isGreenBold ? "green-bold" : ""
+                      }`}
                       disabled={!isEditable} // Disable based on the criteria
                     />
+                    {isLinkColumn && (
+                      <button
+                        className="open-link-button"
+                        onClick={() => openLink(row[key])}
+                        style={{
+                          marginLeft: "8px",
+                          padding: "4px",
+                          backgroundColor: "transparent",
+                          border: "none",
+                          cursor: "pointer",
+                        }}
+                      >
+                        🔗
+                      </button>
+                    )}
                   </td>
                 );
               })}

@@ -77,18 +77,23 @@ function Section({ sectionData, onUpdate }) {
       <button className="add-row-button" onClick={addRowToAllTables}>
         Add Row to All Tables
       </button>
-      <Table
-        label="Athens"
-        tableData={athensTable}
-        onUpdate={onUpdate}
-        sectionData={sectionData}
-      />
-      <Table
-        label="Thessaloniki"
-        tableData={thessalonikiTable}
-        onUpdate={onUpdate}
-        sectionData={sectionData}
-      />
+
+      {/* Flex container to hold Athens and Thessaloniki side by side */}
+      <div className="tables-container">
+        <Table
+          label="Athens"
+          tableData={athensTable}
+          onUpdate={onUpdate}
+          sectionData={sectionData}
+        />
+        <Table
+          label="Thessaloniki"
+          tableData={thessalonikiTable}
+          onUpdate={onUpdate}
+          sectionData={sectionData}
+        />
+      </div>
+
       <Table
         label="Summary"
         tableData={summaryTable}
