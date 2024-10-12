@@ -157,3 +157,12 @@
 .reset-button:hover {
   background-color: darkred; /* Darker shade on hover */
 }
+
+.mobile-header {
+  background-color: orange !important; /* Set background color for MOBILE.DE */
+}
+
+.autoscout-header {
+  background-color: yellow !important; /* Set background color for AUTOSCOUT24 */
+  color: black; /* Optional: change text color for contrast */
+}

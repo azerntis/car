@@ -41,7 +41,18 @@ function Table({ label, tableData = [], onUpdate, sectionData }) {
         <thead>
           <tr>
             {headers[label].map((header, index) => (
-              <th key={index}>{header}</th>
+              <th
+                className={
+                  header === "MOBILE.DE"
+                    ? "mobile-header"
+                    : header === "AUTOSCOUT24"
+                    ? "autoscout-header"
+                    : ""
+                }
+                key={index}
+              >
+                {header}
+              </th>
             ))}
           </tr>
         </thead>
