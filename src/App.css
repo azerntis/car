@@ -129,3 +129,17 @@
   cursor: pointer;
   margin-right: 16px;
 }
+
+.add-row-button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #0070f3; /* Vercel blue */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-row-button:hover {
+  background-color: #005bb5; /* Darker blue on hover */
+}
