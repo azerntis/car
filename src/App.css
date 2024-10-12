@@ -1,38 +1,129 @@
-.App {
+.app-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.title-input {
+  font-size: 24px;
+  padding: 10px;
+  width: 350px;
+  margin-bottom: 20px;
+  border: 2px solid #007bff;
+  border-radius: 10px;
+  outline: none;
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+  transition: all 0.3s ease;
+  margin-right: 16px;
+}
+
+.title-input:focus {
+  box-shadow: 0 4px 16px rgba(0, 123, 255, 0.4);
+}
+
+.section-title-input {
+  font-size: 18px;
+  margin-bottom: 10px;
+  width: 300px;
+  padding: 5px;
+  border: 2px solid #007bff;
+  border-radius: 8px;
+}
+
+.tables-container {
+  display: flex;
+  gap: 20px;
+}
+
+.table-container {
+  margin-bottom: 20px;
+}
+
+.table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ccc;
+  padding: 8px;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.table th {
+  background-color: #f4f4f4;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.table-input {
+  width: 90%;
+  padding: 5px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 4px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.table-input:disabled {
+  background-color: #f9f9f9;
+  color: #888;
+}
+
+.add-section-button,
+.save-button,
+.add-row-button {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  background-color: #007bff;
   color: white;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
-.App-link {
-  color: #61dafb;
+.add-section-button:hover,
+.save-button:hover,
+.add-row-button:hover {
+  background-color: #0056b3;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.file-upload {
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #007bff;
+  border-radius: 5px;
+  outline: none;
+  cursor: pointer;
+  background-color: #f0f0f0;
+}
+
+.file-upload:hover {
+  border-color: #0056b3;
+  background-color: #e9ecef;
+}
+
+.table th {
+  padding: 10px;
+}
+
+.mobile-header {
+  background-color: orange !important; /* Set background color for MOBILE.DE */
+}
+
+.autoscout-header {
+  background-color: yellow !important; /* Set background color for AUTOSCOUT24 */
+  color: black; /* Optional: change text color for contrast */
+}
+
+/* Styling for the search button */
+.search-button {
+  margin-top: 20px; /* Space above the button */
+  padding: 10px 20px;
+  background-color: green; /* Change this color as needed */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 16px;
 }

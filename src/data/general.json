@@ -1,0 +1,23 @@
+{
+  "generalTitle": "My General Title",
+  "sections": [
+    {
+      "title": "Section 1",
+      "athensTable": [
+        { "one": "", "two": "", "mo": "", "type": "", "link": "" }
+      ],
+      "thessalonikiTable": [
+        { "one": "", "two": "", "mo": "", "type": "", "link": "" }
+      ],
+      "summaryTable": [
+        {
+          "type": "",
+          "info1": "",
+          "mobileDe": "",
+          "autoscout24": "",
+          "info2": ""
+        }
+      ]
+    }
+  ]
+}
