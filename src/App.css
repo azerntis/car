@@ -80,7 +80,9 @@
   cursor: pointer;
   border-radius: 5px;
 }
-
+.save-button {
+  background-color: orange;
+}
 .add-section-button:hover,
 .save-button:hover,
 .add-row-button:hover {

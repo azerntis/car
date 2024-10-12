@@ -42,7 +42,13 @@ function Table({ label, tableData = [], onUpdate, sectionData }) {
 
   return (
     <div className="table-container">
-      <h3>{label} Table</h3>
+      <h3>
+        {label === "Athens"
+          ? "Αθήνα"
+          : label === "Thessaloniki"
+          ? "Θεσσαλονίκη"
+          : "Summary"}
+      </h3>
       <table className="table">
         <thead>
           <tr>
