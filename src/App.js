@@ -173,6 +173,15 @@ function App() {
         onChange={handleFileChange}
         className="file-upload"
       />
+      <button className="save-button" onClick={saveData}>
+        Save
+      </button>
+      <button className="search-button" onClick={handleSearch}>
+        Search
+      </button>
+      <button className="reset-button" onClick={resetAppData}>
+        Reset All
+      </button>
       {appData.sections.map((section, index) => (
         <Section
           key={index}
@@ -183,16 +192,7 @@ function App() {
         />
       ))}
       <button className="add-section-button" onClick={addSection}>
-        Add Section
-      </button>
-      <button className="save-button" onClick={saveData}>
-        Save
-      </button>
-      <button className="search-button" onClick={handleSearch}>
-        Search
-      </button>
-      <button className="reset-button" onClick={resetAppData}>
-        Reset All
+        Add Section +
       </button>
     </div>
   );

@@ -75,7 +75,7 @@ function Section({ sectionData, onUpdate }) {
         />
       </h2>
       <button className="add-row-button" onClick={addRowToAllTables}>
-        Add Row to All Tables
+        Add Row to All Tables +
       </button>
 
       {/* Flex container to hold Athens and Thessaloniki side by side */}
