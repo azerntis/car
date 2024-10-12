@@ -6,6 +6,24 @@ import "./App.css";
 function App() {
   const [appData, setAppData] = useState(initialData); // Use imported JSON file as initial state
 
+  // Function to reset the application state to initial data
+  const resetAppData = () => {
+    const emptySection = {
+      title: "Section 1",
+      athensTable: [{ one: "", two: "", mo: "", type: "", link: "" }],
+      thessalonikiTable: [{ one: "", two: "", mo: "", type: "", link: "" }],
+      summaryTable: [
+        { type: "", info1: "", mobileDe: "", autoscout24: "", info2: "" },
+      ],
+    };
+
+    // Reset appData with new empty sections
+    setAppData({
+      ...appData,
+      sections: [emptySection], // Start with one empty section
+    });
+  };
+
   const addSection = () => {
     const newSection = {
       title: `Section ${appData.sections.length + 1}`,
@@ -172,6 +190,9 @@ function App() {
       </button>
       <button className="search-button" onClick={handleSearch}>
         Search
+      </button>
+      <button className="reset-button" onClick={resetAppData}>
+        Reset All
       </button>
     </div>
   );

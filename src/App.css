@@ -143,3 +143,17 @@
 .add-row-button:hover {
   background-color: #005bb5; /* Darker blue on hover */
 }
+
+.reset-button {
+  margin-top: 20px; /* Space above the button */
+  padding: 10px 20px;
+  background-color: red; /* You can customize thiss color */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.reset-button:hover {
+  background-color: darkred; /* Darker shade on hover */
+}
