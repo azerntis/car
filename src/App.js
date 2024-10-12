@@ -51,9 +51,16 @@ function App() {
       reader.onload = (event) => {
         try {
           const jsonData = JSON.parse(event.target.result);
-          setAppData(jsonData); // Set the app data with uploaded JSON
+          console.log("Parsed JSON Data:", jsonData); // Debugging line
+          // Check if jsonData has the expected structure
+          if (jsonData && jsonData.sections) {
+            setAppData(jsonData); // Set app data with uploaded JSON
+          } else {
+            throw new Error("Invalid JSON structure");
+          }
         } catch (error) {
           alert("Invalid JSON file. Please upload a valid JSON.");
+          console.error("Error:", error); // Log error to the console
         }
       };
       reader.readAsText(file);
@@ -148,6 +155,7 @@ function App() {
         onChange={handleFileChange}
         className="file-upload"
       />
+      {console.log(appData)}
       {appData.sections.map((section, index) => (
         <Section
           key={index}

@@ -1,42 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import Table from "./Table";
 
 function Section({ sectionData, onUpdate }) {
-  const { athensTable, thessalonikiTable, summaryTable } = sectionData;
+  const { athensTable, thessalonikiTable, summaryTable, title } = sectionData;
 
-  // Function to add a new row to all tables
-  const addRowToAllTables = () => {
-    const newRow = { one: "", two: "", mo: "", type: "", link: "" };
-    const newSummaryRow = {
-      type: "",
-      info1: "",
-      mobileDe: "",
-      autoscout24: "",
-      info2: "",
-    };
+  // State to hold the editable title
+  const [sectionTitle, setSectionTitle] = useState(title);
 
-    // Update Athens Table
-    const updatedAthensTable = [...athensTable, newRow];
-    // Update Thessaloniki Table
-    const updatedThessalonikiTable = [...thessalonikiTable, newRow];
-    // Update Summary Table
-    const updatedSummaryTable = [...summaryTable, newSummaryRow];
+  // Function to update the section title
+  const handleTitleChange = (e) => {
+    const newTitle = e.target.value;
+    setSectionTitle(newTitle); // Update local state
 
-    // Call onUpdate to set the new state
+    // Update the section data with the new title
     onUpdate({
       ...sectionData,
-      athensTable: updatedAthensTable,
-      thessalonikiTable: updatedThessalonikiTable,
-      summaryTable: updatedSummaryTable,
+      title: newTitle, // Update the title in the sectionData
     });
   };
 
   return (
     <div>
-      <h2>Section Title</h2>
-      <button className="add-row-button" onClick={addRowToAllTables}>
-        Add Row to All Tables
-      </button>
+      <h2>
+        <input
+          type="text"
+          value={title}
+          onChange={handleTitleChange}
+          className="section-title-input"
+          placeholder="Section Title"
+        />
+      </h2>
       <Table
         label="Athens"
         tableData={athensTable}
