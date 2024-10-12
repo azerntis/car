@@ -155,7 +155,6 @@ function App() {
         onChange={handleFileChange}
         className="file-upload"
       />
-      {console.log(appData)}
       {appData.sections.map((section, index) => (
         <Section
           key={index}
