@@ -94,13 +94,17 @@ function App() {
       const links = [...athensTable, ...thessalonikiTable]
         .map((row) => row.link)
         .filter((link) => link); // Extract links
-      const baseApiUrl = "https://www.car.gr/api/clsfds/search/?category";
+      const baseApiUrl = "https://www.car.gr/api/clsfds/search/?";
 
       // Process each link
       for (let i = 0; i < links.length; i++) {
         const link = links[i];
-        const url = link.split("category")[1];
-        const apiUrl = `${baseApiUrl}${url}&per-page=2`;
+        const categoryIndex = link.indexOf("category");
+
+        // Extract the part of the URL starting from the first 'category='
+        const remainingParams = link.substring(categoryIndex);
+        // const url = link.split("category")[1];
+        const apiUrl = `${baseApiUrl}${remainingParams}&per-page=2`;
         try {
           const response = await fetch(apiUrl);
           if (!response.ok) {
