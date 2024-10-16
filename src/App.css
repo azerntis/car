@@ -227,3 +227,37 @@
   background-color: grey;
   margin: 40px 0;
 }
+
+/* Styling for the crashed input and link button */
+.controls {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  justify-content: space-between;
+}
+
+.crashed-label {
+  font-size: 16px;
+  margin-right: 8px;
+}
+
+.crashed-input {
+  width: 250px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 8px;
+}
+
+.open-link-button {
+  padding: 4px 8px;
+  background-color: transparent;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.open-link-button:hover {
+  background-color: transparent;
+}

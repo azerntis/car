@@ -10,6 +10,7 @@ function App() {
   const resetAppData = () => {
     const emptySection = {
       title: "Section 1",
+      crashedLink: "",
       athensTable: [{ one: "", two: "", mo: "", type: "", link: "" }],
       thessalonikiTable: [{ one: "", two: "", mo: "", type: "", link: "" }],
       summaryTable: [
@@ -27,6 +28,7 @@ function App() {
   const addSection = () => {
     const newSection = {
       title: `Section ${appData.sections.length + 1}`,
+      crashedLink: "",
       athensTable: [{ one: "", two: "", mo: "", type: "", link: "" }],
       thessalonikiTable: [{ one: "", two: "", mo: "", type: "", link: "" }],
       summaryTable: [

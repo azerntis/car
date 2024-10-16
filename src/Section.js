@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import Table from "./Table";
 
 function Section({ sectionData, onUpdate }) {
-  const { athensTable, thessalonikiTable, summaryTable, title } = sectionData;
+  const { athensTable, thessalonikiTable, summaryTable, title, crashedLink } =
+    sectionData;
 
   // State to hold the editable title
   const [sectionTitle, setSectionTitle] = useState(title);
+  const [crashed, setCrashed] = useState(crashedLink || ""); // Initialize with empty string or existing value
 
   // Function to update the section title
   const handleTitleChange = (e) => {
@@ -58,6 +60,25 @@ function Section({ sectionData, onUpdate }) {
     });
   };
 
+  const handleCrashedLinkChange = (e) => {
+    const newCrashedLink = e.target.value;
+    setCrashed(newCrashedLink);
+
+    // Update sectionData with new Crashed link
+    onUpdate({
+      ...sectionData,
+      crashedLink: newCrashedLink,
+    });
+  };
+
+  const openCrashedLink = () => {
+    if (crashed && crashed.startsWith("http")) {
+      window.open(crashed, "_blank");
+    } else {
+      alert("Invalid URL");
+    }
+  };
+
   // Effect to update summary types whenever Athens table changes
   useEffect(() => {
     updateSummaryTypes();
@@ -74,9 +95,24 @@ function Section({ sectionData, onUpdate }) {
           placeholder="Section Title"
         />
       </h2>
-      <button className="add-row-button" onClick={addRowToAllTables}>
-        Add Row to All Tables +
-      </button>
+      <div className="controls">
+        <button className="add-row-button" onClick={addRowToAllTables}>
+          Add Row to All Tables +
+        </button>
+        <div>
+          <label className="crashed-label">Crashed:</label>
+          <input
+            type="text"
+            value={crashedLink}
+            onChange={handleCrashedLinkChange}
+            className="crashed-input"
+            placeholder="Enter Crashed Link"
+          />
+          <button className="open-link-button" onClick={openCrashedLink}>
+            🔗
+          </button>
+        </div>
+      </div>
 
       {/* Flex container to hold Athens and Thessaloniki side by side */}
       <div className="tables-container">
