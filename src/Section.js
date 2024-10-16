@@ -100,6 +100,8 @@ function Section({ sectionData, onUpdate }) {
         onUpdate={onUpdate}
         sectionData={sectionData}
       />
+      {/* Horizontal separation line */}
+      <hr className="section-separator" />
     </div>
   );
 }
