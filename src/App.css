@@ -201,6 +201,14 @@
     min-width: 600px; /* Prevent tables from shrinking too much */
   }
 
+  .table th,
+  .table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+    min-width: 180px;
+  }
+
   .table-input {
     width: 100%; /* Make inputs larger on mobile */
     font-size: 18px; /* Increase font size for better readability */
