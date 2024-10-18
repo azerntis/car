@@ -46,16 +46,24 @@ function Section({ sectionData, onUpdate }) {
     });
   };
 
-  // Function to update the types in the summary table based on Athens table
-  const updateSummaryTypes = () => {
-    const updatedSummaryTable = summaryTable.map((row, index) => ({
-      ...row, // Preserve existing data in the Summary table
-      type: athensTable[index]?.type || "", // Populate type from Athens table
+  // Function to update the types in both Thessaloniki and Summary tables based on Athens table
+  const updateTablesTypes = () => {
+    // Update Thessaloniki "type" field based on Athens table
+    const updatedThessalonikiTable = thessalonikiTable.map((row, index) => ({
+      ...row,
+      type: athensTable[index]?.type || "", // Auto-populate type from Athens table
     }));
 
-    // Update sectionData with the new summary table
+    // Update Summary "type" field based on Athens table
+    const updatedSummaryTable = summaryTable.map((row, index) => ({
+      ...row,
+      type: athensTable[index]?.type || "", // Auto-populate type from Athens table
+    }));
+
+    // Update sectionData with the new Thessaloniki and Summary tables
     onUpdate({
       ...sectionData,
+      thessalonikiTable: updatedThessalonikiTable,
       summaryTable: updatedSummaryTable,
     });
   };
@@ -79,9 +87,12 @@ function Section({ sectionData, onUpdate }) {
     }
   };
 
-  // Effect to update summary types whenever Athens table changes
+  // Effect to update both Thessaloniki and Summary tables' types whenever Athens table changes
   useEffect(() => {
-    updateSummaryTypes();
+    // Only update tables when Athens changes
+    if (athensTable.length) {
+      updateTablesTypes();
+    }
   }, [athensTable]); // This will run whenever athensTable changes
 
   return (

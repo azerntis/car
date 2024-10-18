@@ -74,14 +74,11 @@ function Table({ label, tableData = [], onUpdate, sectionData }) {
               {Object.keys(row).map((key, colIndex) => {
                 const isEditable =
                   (label === "Athens" && (key === "type" || key === "link")) || // Editable type and link in Athens
-                  (label === "Thessaloniki" &&
-                    (key === "type" || key === "link")) || // Editable type and link in Thessaloniki
-                  (label === "Summary" && key !== "type"); // All except "type" editable in Summary
+                  (label === "Thessaloniki" && key === "link") || // Editable link only in Thessaloniki
+                  (label === "Summary" && key !== "type");
 
-                // Apply bold and green color for specific columns
                 const isGreenBold = greenBoldColumns.includes(key);
 
-                // Check if it's MOBILE.DE or AUTOSCOUT24 for showing the open link button
                 const isLinkColumn =
                   key === "mobileDe" || key === "autoscout24" || key === "link";
 
@@ -94,7 +91,10 @@ function Table({ label, tableData = [], onUpdate, sectionData }) {
                       className={`table-input ${
                         isGreenBold ? "green-bold" : ""
                       }`}
-                      disabled={!isEditable} // Disable based on the criteria
+                      disabled={
+                        !isEditable ||
+                        (label === "Thessaloniki" && key === "type")
+                      } // Disable "type" in Thessaloniki
                     />
                     {isLinkColumn && (
                       <button
