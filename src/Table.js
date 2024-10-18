@@ -21,17 +21,35 @@ function Table({ label, tableData = [], onUpdate, sectionData }) {
     onUpdate(updatedSection);
   };
 
-  // Header titles based on the label
-  const headers = {
-    Athens: ["1η ΤΙΜΗ", "2η ΤΙΜΗ", "M.O", "ΤΥΠΟΣ", "Link"],
-    Thessaloniki: ["1η ΤΙΜΗ", "2η ΤΙΜΗ", "M.O", "ΤΥΠΟΣ", "Link"],
-    Summary: ["ΤΥΠΟΣ", "", "MOBILE.DE", "AUTOSCOUT24", ""],
+  const handleMobileDeInputChange = (e, rowIndex, subKey) => {
+    const updatedTableData = [...tableData];
+
+    // Check if mobileDe is a string and convert it to an object if needed
+    if (typeof updatedTableData[rowIndex]["mobileDe"] === "string") {
+      updatedTableData[rowIndex]["mobileDe"] = {
+        mobileDe1: updatedTableData[rowIndex]["mobileDe"],
+        mobileDe2: "", // or some default value
+      };
+    }
+
+    // Now update the appropriate mobileDe key
+    updatedTableData[rowIndex]["mobileDe"] = {
+      ...updatedTableData[rowIndex]["mobileDe"],
+      [subKey]: e.target.value,
+    };
+
+    // Update the section data based on the table being edited
+    const updatedSection = {
+      ...sectionData,
+      [label === "Athens"
+        ? "athensTable"
+        : label === "Thessaloniki"
+        ? "thessalonikiTable"
+        : "summaryTable"]: updatedTableData,
+    };
+    onUpdate(updatedSection);
   };
 
-  // List of headers to apply bold and green color
-  const greenBoldColumns = ["one", "two", "mo"];
-
-  // Function to open the link in a new tab
   const openLink = (url) => {
     if (url && url.startsWith("http")) {
       window.open(url, "_blank");
@@ -39,6 +57,14 @@ function Table({ label, tableData = [], onUpdate, sectionData }) {
       alert("Invalid URL");
     }
   };
+
+  const headers = {
+    Athens: ["1η ΤΙΜΗ", "2η ΤΙΜΗ", "M.O", "ΤΥΠΟΣ", "Link"],
+    Thessaloniki: ["1η ΤΙΜΗ", "2η ΤΙΜΗ", "M.O", "ΤΥΠΟΣ", "Link"],
+    Summary: ["ΤΥΠΟΣ", "", "MOBILE.DE (1 and 2)", "AUTOSCOUT24", ""],
+  };
+
+  const greenBoldColumns = ["one", "two", "mo"];
 
   return (
     <div className="table-container">
@@ -55,7 +81,7 @@ function Table({ label, tableData = [], onUpdate, sectionData }) {
             {headers[label].map((header, index) => (
               <th
                 className={
-                  header === "MOBILE.DE"
+                  header.includes("MOBILE.DE")
                     ? "mobile-header"
                     : header === "AUTOSCOUT24"
                     ? "autoscout-header"
@@ -73,14 +99,79 @@ function Table({ label, tableData = [], onUpdate, sectionData }) {
             <tr key={rowIndex}>
               {Object.keys(row).map((key, colIndex) => {
                 const isEditable =
-                  (label === "Athens" && (key === "type" || key === "link")) || // Editable type and link in Athens
-                  (label === "Thessaloniki" && key === "link") || // Editable link only in Thessaloniki
+                  (label === "Athens" && (key === "type" || key === "link")) ||
+                  (label === "Thessaloniki" && key === "link") ||
                   (label === "Summary" && key !== "type");
 
                 const isGreenBold = greenBoldColumns.includes(key);
 
-                const isLinkColumn =
-                  key === "mobileDe" || key === "autoscout24" || key === "link";
+                if (key === "mobileDe") {
+                  return (
+                    <td key={colIndex}>
+                      <div style={{ display: "flex", alignItems: "center" }}>
+                        <input
+                          type="text"
+                          value={
+                            typeof row[key] === "object"
+                              ? row[key]?.mobileDe1 || ""
+                              : row[key] || ""
+                          }
+                          onChange={(e) =>
+                            handleMobileDeInputChange(e, rowIndex, "mobileDe1")
+                          }
+                          className="table-input"
+                          style={{ marginRight: "8px" }}
+                        />
+                        <button
+                          className="open-link-button"
+                          onClick={() => openLink(row[key]?.mobileDe1)}
+                          style={{
+                            padding: "4px",
+                            backgroundColor: "transparent",
+                            border: "none",
+                            cursor: "pointer",
+                          }}
+                        >
+                          🔗
+                        </button>
+                      </div>
+
+                      <div
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          marginTop: "5px",
+                        }}
+                      >
+                        <input
+                          type="text"
+                          value={
+                            typeof row[key] === "object"
+                              ? row[key]?.mobileDe2 || ""
+                              : ""
+                          }
+                          onChange={(e) =>
+                            handleMobileDeInputChange(e, rowIndex, "mobileDe2")
+                          }
+                          className="table-input"
+                          style={{ marginRight: "8px" }}
+                        />
+                        <button
+                          className="open-link-button"
+                          onClick={() => openLink(row[key]?.mobileDe2)}
+                          style={{
+                            padding: "4px",
+                            backgroundColor: "transparent",
+                            border: "none",
+                            cursor: "pointer",
+                          }}
+                        >
+                          🔗
+                        </button>
+                      </div>
+                    </td>
+                  );
+                }
 
                 return (
                   <td key={colIndex}>
@@ -94,9 +185,9 @@ function Table({ label, tableData = [], onUpdate, sectionData }) {
                       disabled={
                         !isEditable ||
                         (label === "Thessaloniki" && key === "type")
-                      } // Disable "type" in Thessaloniki
+                      }
                     />
-                    {isLinkColumn && (
+                    {key === "link" && (
                       <button
                         className="open-link-button"
                         onClick={() => openLink(row[key])}

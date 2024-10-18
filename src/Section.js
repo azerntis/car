@@ -5,39 +5,43 @@ function Section({ sectionData, onUpdate }) {
   const { athensTable, thessalonikiTable, summaryTable, title, crashedLink } =
     sectionData;
 
-  // State to hold the editable title
   const [sectionTitle, setSectionTitle] = useState(title);
-  const [crashed, setCrashed] = useState(crashedLink || ""); // Initialize with empty string or existing value
+  const [crashed, setCrashed] = useState(crashedLink || "");
 
-  // Function to update the section title
   const handleTitleChange = (e) => {
     const newTitle = e.target.value;
-    setSectionTitle(newTitle); // Update local state
+    setSectionTitle(newTitle);
 
-    // Update the section data with the new title
     onUpdate({
       ...sectionData,
-      title: newTitle, // Update the title in the sectionData
+      title: newTitle,
     });
   };
 
-  // Function to add a new row to all tables
   const addRowToAllTables = () => {
-    const newRow = { one: "", two: "", mo: "", type: "", link: "" };
+    const newRow = {
+      one: "",
+      two: "",
+      mo: "",
+      type: "",
+      link: "",
+      mobileDe: { mobileDe1: "", mobileDe2: "" },
+    };
     const newSummaryRow = {
-      type: "", // Will be auto-populated based on Athens table
+      type: "",
       info1: "",
-      mobileDe: "",
+      mobileDe: {
+        mobileDe1: "",
+        mobileDe2: "",
+      },
       autoscout24: "",
       info2: "",
     };
 
-    // Create new rows for Athens and Thessaloniki tables
     const updatedAthensTable = [...athensTable, newRow];
     const updatedThessalonikiTable = [...thessalonikiTable, { ...newRow }];
     const updatedSummaryTable = [...summaryTable, newSummaryRow];
 
-    // Call onUpdate to set the new state
     onUpdate({
       ...sectionData,
       athensTable: updatedAthensTable,
@@ -46,21 +50,17 @@ function Section({ sectionData, onUpdate }) {
     });
   };
 
-  // Function to update the types in both Thessaloniki and Summary tables based on Athens table
   const updateTablesTypes = () => {
-    // Update Thessaloniki "type" field based on Athens table
     const updatedThessalonikiTable = thessalonikiTable.map((row, index) => ({
       ...row,
-      type: athensTable[index]?.type || "", // Auto-populate type from Athens table
+      type: athensTable[index]?.type || "",
     }));
 
-    // Update Summary "type" field based on Athens table
     const updatedSummaryTable = summaryTable.map((row, index) => ({
       ...row,
-      type: athensTable[index]?.type || "", // Auto-populate type from Athens table
+      type: athensTable[index]?.type || "",
     }));
 
-    // Update sectionData with the new Thessaloniki and Summary tables
     onUpdate({
       ...sectionData,
       thessalonikiTable: updatedThessalonikiTable,
@@ -68,39 +68,18 @@ function Section({ sectionData, onUpdate }) {
     });
   };
 
-  const handleCrashedLinkChange = (e) => {
-    const newCrashedLink = e.target.value;
-    setCrashed(newCrashedLink);
-
-    // Update sectionData with new Crashed link
-    onUpdate({
-      ...sectionData,
-      crashedLink: newCrashedLink,
-    });
-  };
-
-  const openCrashedLink = () => {
-    if (crashed && crashed.startsWith("http")) {
-      window.open(crashed, "_blank");
-    } else {
-      alert("Invalid URL");
-    }
-  };
-
-  // Effect to update both Thessaloniki and Summary tables' types whenever Athens table changes
   useEffect(() => {
-    // Only update tables when Athens changes
     if (athensTable.length) {
       updateTablesTypes();
     }
-  }, [athensTable]); // This will run whenever athensTable changes
+  }, [athensTable]);
 
   return (
     <div>
       <h2>
         <input
           type="text"
-          value={title}
+          value={sectionTitle}
           onChange={handleTitleChange}
           className="section-title-input"
           placeholder="Section Title"
@@ -114,18 +93,14 @@ function Section({ sectionData, onUpdate }) {
           <label className="crashed-label">Crashed:</label>
           <input
             type="text"
-            value={crashedLink}
-            onChange={handleCrashedLinkChange}
+            value={crashed}
+            onChange={(e) => setCrashed(e.target.value)}
             className="crashed-input"
             placeholder="Enter Crashed Link"
           />
-          <button className="open-link-button" onClick={openCrashedLink}>
-            🔗
-          </button>
         </div>
       </div>
 
-      {/* Flex container to hold Athens and Thessaloniki side by side */}
       <div className="tables-container">
         <Table
           label="Athens"
@@ -147,7 +122,6 @@ function Section({ sectionData, onUpdate }) {
         onUpdate={onUpdate}
         sectionData={sectionData}
       />
-      {/* Horizontal separation line */}
       <hr className="section-separator" />
     </div>
   );
