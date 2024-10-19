@@ -145,8 +145,6 @@ function Table({ label, tableData = [], onUpdate, sectionData }) {
 
                       <div
                         style={{
-                          display: "flex",
-                          alignItems: "center",
                           marginTop: "5px",
                         }}
                       >
