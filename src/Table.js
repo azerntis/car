@@ -62,7 +62,7 @@ function Table({ label, tableData = [], onUpdate, sectionData }) {
   const headers = {
     Athens: ["1η ΤΙΜΗ", "2η ΤΙΜΗ", "M.O", "ΤΥΠΟΣ", "Link"],
     Thessaloniki: ["1η ΤΙΜΗ", "2η ΤΙΜΗ", "M.O", "ΤΥΠΟΣ", "Link"],
-    Summary: ["ΤΥΠΟΣ", "", "MOBILE.DE (1 and 2)", "AUTOSCOUT24", ""],
+    Summary: ["ΤΥΠΟΣ", "", "MOBILE.DE", "AUTOSCOUT24", ""],
   };
 
   const greenBoldColumns = ["one", "two", "mo"];
