@@ -52,6 +52,7 @@ function Table({ label, tableData = [], onUpdate, sectionData }) {
 
   const openLink = (url) => {
     if (url && url.startsWith("http")) {
+      console.log("Opening link:", url);
       window.open(url, "_blank");
     } else {
       alert("Invalid URL");
@@ -124,7 +125,13 @@ function Table({ label, tableData = [], onUpdate, sectionData }) {
                         />
                         <button
                           className="open-link-button"
-                          onClick={() => openLink(row[key]?.mobileDe1)}
+                          onClick={() =>
+                            openLink(
+                              typeof row[key] === "object"
+                                ? row[key]?.mobileDe1 || ""
+                                : row[key] || ""
+                            )
+                          }
                           style={{
                             padding: "4px",
                             backgroundColor: "transparent",
