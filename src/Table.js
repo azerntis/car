@@ -194,22 +194,21 @@ function Table({ label, tableData = [], onUpdate, sectionData }) {
                         (label === "Thessaloniki" && key === "type")
                       }
                     />
-                    {key === "link" ||
-                      (key === "autoscout24" && (
-                        <button
-                          className="open-link-button"
-                          onClick={() => openLink(row[key])}
-                          style={{
-                            marginLeft: "8px",
-                            padding: "4px",
-                            backgroundColor: "transparent",
-                            border: "none",
-                            cursor: "pointer",
-                          }}
-                        >
-                          🔗
-                        </button>
-                      ))}
+                    {(key === "link" || key === "autoscout24") && (
+                      <button
+                        className="open-link-button"
+                        onClick={() => openLink(row[key])}
+                        style={{
+                          marginLeft: "8px",
+                          padding: "4px",
+                          backgroundColor: "transparent",
+                          border: "none",
+                          cursor: "pointer",
+                        }}
+                      >
+                        🔗
+                      </button>
+                    )}
                   </td>
                 );
               })}
