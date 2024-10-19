@@ -109,7 +109,7 @@ function Table({ label, tableData = [], onUpdate, sectionData }) {
                 if (key === "mobileDe") {
                   return (
                     <td key={colIndex}>
-                      <div style={{ display: "flex", alignItems: "center" }}>
+                      <div>
                         <input
                           type="text"
                           value={
