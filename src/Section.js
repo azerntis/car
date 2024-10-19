@@ -25,7 +25,6 @@ function Section({ sectionData, onUpdate }) {
       mo: "",
       type: "",
       link: "",
-      mobileDe: { mobileDe1: "", mobileDe2: "" },
     };
     const newSummaryRow = {
       type: "",
