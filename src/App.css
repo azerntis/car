@@ -270,3 +270,7 @@
 .open-link-button:hover {
   background-color: transparent;
 }
+
+.label {
+  text-decoration: underline;
+}

@@ -69,12 +69,12 @@ function Table({ label, tableData = [], onUpdate, sectionData }) {
 
   return (
     <div className="table-container">
-      <h3>
+      <h3 className="label">
         {label === "Athens"
-          ? "Αθήνα"
+          ? "Αθήνα 🏛"
           : label === "Thessaloniki"
-          ? "Θεσσαλονίκη"
-          : "Summary"}
+          ? "Θεσσαλονίκη ♖"
+          : "Γερμανία 🇩🇪"}
       </h3>
       <table className="table">
         <thead>
