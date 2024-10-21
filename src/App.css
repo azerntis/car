@@ -80,9 +80,16 @@
   color: green !important;
 }
 
-.add-section-button,
-.save-button,
-.add-row-button {
+.add-section-button {
+  padding: 10px 20px;
+  margin: 16px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.save-button {
   padding: 10px 20px;
   margin: 16px;
   border: none;
@@ -96,10 +103,11 @@
   background-color: orange;
 }
 
-.add-section-button:hover,
-.save-button:hover,
-.add-row-button:hover {
-  background-color: #0056b3;
+.add-section-button:hover {
+  background-color: #005bb5;
+}
+.save-button:hover {
+  background-color: #807316;
 }
 
 .file-upload {
@@ -143,10 +151,14 @@
   margin-right: 16px;
 }
 
+.search-button:hover {
+  background-color: #206b23;
+}
+
 .add-row-button {
   margin-top: 10px;
   padding: 8px 12px;
-  background-color: #0070f3; /* Vercel blue */
+  background-color: green;
   color: white;
   border: none;
   border-radius: 4px;
@@ -154,7 +166,7 @@
 }
 
 .add-row-button:hover {
-  background-color: #005bb5; /* Darker blue on hover */
+  background-color: #206b23; /* Darker blue on hover */
 }
 
 .reset-button {
@@ -273,4 +285,18 @@
 
 .label {
   text-decoration: underline;
+}
+
+.remove-row-button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: red; /* Change this color as needed */
+}
+
+.remove-row-button:hover {
+  background-color: #630d20;
 }

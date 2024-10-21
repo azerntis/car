@@ -18,6 +18,27 @@ function Section({ sectionData, onUpdate }) {
     });
   };
 
+  const removeLastRowFromAllTables = () => {
+    if (
+      athensTable.length > 0 &&
+      thessalonikiTable.length > 0 &&
+      summaryTable.length > 0
+    ) {
+      const updatedAthensTable = athensTable.slice(0, -1);
+      const updatedThessalonikiTable = thessalonikiTable.slice(0, -1);
+      const updatedSummaryTable = summaryTable.slice(0, -1);
+
+      onUpdate({
+        ...sectionData,
+        athensTable: updatedAthensTable,
+        thessalonikiTable: updatedThessalonikiTable,
+        summaryTable: updatedSummaryTable,
+      });
+    } else {
+      alert("No rows to remove!");
+    }
+  };
+
   const addRowToAllTables = () => {
     const newRow = {
       one: "",
@@ -97,6 +118,13 @@ function Section({ sectionData, onUpdate }) {
         <button className="add-row-button" onClick={addRowToAllTables}>
           Add Row to All Tables +
         </button>
+        <button
+          className="remove-row-button"
+          onClick={removeLastRowFromAllTables}
+        >
+          Remove Row to All Tables -
+        </button>
+
         <div>
           <label className="crashed-label">Crashed:</label>
           <input
