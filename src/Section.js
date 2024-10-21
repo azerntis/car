@@ -49,6 +49,15 @@ function Section({ sectionData, onUpdate }) {
     });
   };
 
+  const openLink = (url) => {
+    if (url && url.startsWith("http")) {
+      console.log("Opening link:", url);
+      window.open(url, "_blank");
+    } else {
+      alert("Invalid URL");
+    }
+  };
+
   const updateTablesTypes = () => {
     const updatedThessalonikiTable = thessalonikiTable.map((row, index) => ({
       ...row,
@@ -97,6 +106,18 @@ function Section({ sectionData, onUpdate }) {
             className="crashed-input"
             placeholder="Enter Crashed Link"
           />
+          <button
+            className="open-link-button"
+            onClick={() => openLink(crashed)}
+            style={{
+              padding: "4px",
+              backgroundColor: "transparent",
+              border: "none",
+              cursor: "pointer",
+            }}
+          >
+            🔗
+          </button>
         </div>
       </div>
 
