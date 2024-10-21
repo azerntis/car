@@ -230,6 +230,9 @@
   .app-container {
     overflow-x: hidden; /* Prevent horizontal scrolling for the entire page */
   }
+  .remove-row-button {
+    margin-bottom: 8px;
+  }
 }
 
 /* Styling for the horizontal separator line */
