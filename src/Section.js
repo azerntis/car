@@ -117,13 +117,13 @@ function Section({ sectionData, onUpdate }) {
       </h2>
       <div className="controls">
         <button className="add-row-button" onClick={addRowToAllTables}>
-          Add Row to All Tables +
+          Add Row +
         </button>
         <button
           className="remove-row-button"
           onClick={removeLastRowFromAllTables}
         >
-          Remove Row to All Tables -
+          Remove Row -
         </button>
 
         <div>
