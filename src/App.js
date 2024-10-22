@@ -11,8 +11,12 @@ function App() {
     const emptySection = {
       title: "Section 1",
       crashedLink: "",
-      athensTable: [{ one: "", two: "", mo: "", type: "", link: "" }],
-      thessalonikiTable: [{ one: "", two: "", mo: "", type: "", link: "" }],
+      athensTable: [
+        { one: "", two: "", mo: "", km1: "", km2: "", type: "", link: "" },
+      ],
+      thessalonikiTable: [
+        { one: "", two: "", mo: "", km1: "", km2: "", type: "", link: "" },
+      ],
       summaryTable: [
         { type: "", info1: "", mobileDe: "", autoscout24: "", info2: "" },
       ],
@@ -29,8 +33,10 @@ function App() {
     const newSection = {
       title: `Section ${appData.sections.length + 1}`,
       crashedLink: "",
-      athensTable: [{ one: "", two: "", mo: "", type: "", link: "" }],
-      thessalonikiTable: [{ one: "", two: "", mo: "", type: "", link: "" }],
+      athensTable: [{ one: "", two: "", mo: "", km: "", type: "", link: "" }],
+      thessalonikiTable: [
+        { one: "", two: "", mo: "", km: "", type: "", link: "" },
+      ],
       summaryTable: [
         { type: "", info1: "", mobileDe: "", autoscout24: "", info2: "" },
       ],
@@ -113,23 +119,40 @@ function App() {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
           const data = await response.json();
+          let price1 = 0;
+          let km1 = 0;
+          let price2 = 0;
+          let km2 = 0;
+          if (data?.data?.results?.rows[0]) {
+            // Extract price for the first two objects or 0 if none
+            price1 = data?.data?.results?.rows[0]?.raw_price
+              ? parseFloat(data.data.results.rows[0].raw_price)
+              : 0;
 
-          // Extract price for the first two objects or 0 if none
-          const price1 = data?.data?.results?.rows[0]?.raw_price
-            ? parseFloat(data.data.results.rows[0].raw_price)
-            : 0;
-          const price2 = data?.data?.results?.rows[1]?.raw_price
-            ? parseFloat(data.data.results.rows[1].raw_price)
-            : 0;
+            km1 = data.data.results.rows[0].mileage;
+          }
+          if (data?.data?.results?.rows[1]) {
+            price2 = data?.data?.results?.rows[1]?.raw_price
+              ? parseFloat(data.data.results.rows[1].raw_price)
+              : 0;
+            km2 = data.data.results.rows[1].mileage;
+          }
 
           // Calculate the average
-          const average = (price1 + price2) / 2;
+          const average = price2 > 0 ? (price1 + price2) / 2 : price1;
 
           // Update the corresponding rows
           if (i < athensTable.length) {
             section.athensTable = section.athensTable.map((row, index) =>
               index === i
-                ? { ...row, one: price1, two: price2, mo: average }
+                ? {
+                    ...row,
+                    one: price1,
+                    two: price2,
+                    mo: average,
+                    km1: km1,
+                    km2: km2,
+                  }
                 : row
             );
           } else {
@@ -137,7 +160,14 @@ function App() {
             section.thessalonikiTable = section.thessalonikiTable.map(
               (row, index) =>
                 index === thessalonikiIndex
-                  ? { ...row, one: price1, two: price2, mo: average }
+                  ? {
+                      ...row,
+                      one: price1,
+                      two: price2,
+                      mo: average,
+                      km1: km1,
+                      km2: km2,
+                    }
                   : row
             );
           }
@@ -146,14 +176,16 @@ function App() {
           // In case of error, set prices to 0
           if (i < athensTable.length) {
             section.athensTable = section.athensTable.map((row, index) =>
-              index === i ? { ...row, one: 0, two: 0, mo: 0 } : row
+              index === i
+                ? { ...row, one: 0, two: 0, mo: 0, km1: 0, km2: 0 }
+                : row
             );
           } else {
             const thessalonikiIndex = i - athensTable.length;
             section.thessalonikiTable = section.thessalonikiTable.map(
               (row, index) =>
                 index === thessalonikiIndex
-                  ? { ...row, one: 0, two: 0, mo: 0 }
+                  ? { ...row, one: 0, two: 0, mo: 0, km1: 0, km2: 0 }
                   : row
             );
           }

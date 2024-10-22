@@ -60,8 +60,16 @@ function Table({ label, tableData = [], onUpdate, sectionData }) {
   };
 
   const headers = {
-    Athens: ["1η ΤΙΜΗ", "2η ΤΙΜΗ", "M.O", "ΤΥΠΟΣ", "Link"],
-    Thessaloniki: ["1η ΤΙΜΗ", "2η ΤΙΜΗ", "M.O", "ΤΥΠΟΣ", "Link"],
+    Athens: ["1η ΤΙΜΗ", "2η ΤΙΜΗ", "M.O", "ΧΛΜ 1", "ΧΛΜ 2", "ΤΥΠΟΣ", "Link"],
+    Thessaloniki: [
+      "1η ΤΙΜΗ",
+      "2η ΤΙΜΗ",
+      "M.O",
+      "ΧΛΜ 1",
+      "ΧΛΜ 2",
+      "ΤΥΠΟΣ",
+      "Link",
+    ],
     Summary: ["ΤΥΠΟΣ", "", "MOBILE.DE", "AUTOSCOUT24", ""],
   };
 

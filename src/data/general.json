@@ -5,10 +5,26 @@
       "title": "Section 1",
       "crashedLink": "",
       "athensTable": [
-        { "one": "", "two": "", "mo": "", "type": "", "link": "" }
+        {
+          "one": "",
+          "two": "",
+          "mo": "",
+          "km1": "",
+          "km2": "",
+          "type": "",
+          "link": ""
+        }
       ],
       "thessalonikiTable": [
-        { "one": "", "two": "", "mo": "", "type": "", "link": "" }
+        {
+          "one": "",
+          "two": "",
+          "mo": "",
+          "km1": "",
+          "km2": "",
+          "type": "",
+          "link": ""
+        }
       ],
       "summaryTable": [
         {
