@@ -110,7 +110,7 @@ function Section({ sectionData, onUpdate }) {
       <h2>
         <input
           type="text"
-          value={sectionTitle}
+          value={title}
           onChange={handleTitleChange}
           className="section-title-input"
           placeholder="Section Title"
