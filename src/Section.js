@@ -44,7 +44,8 @@ function Section({ sectionData, onUpdate }) {
       one: "",
       two: "",
       mo: "",
-      km: "",
+      km1: "",
+      km2: ""
       type: "",
       link: "",
     };
