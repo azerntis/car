@@ -25,6 +25,7 @@ function App() {
     // Reset appData with new empty sections
     setAppData({
       ...appData,
+      generalTitle: "New Title",
       sections: [emptySection], // Start with one empty section
     });
   };
