@@ -34,9 +34,11 @@ function App() {
     const newSection = {
       title: `Section ${appData.sections.length + 1}`,
       crashedLink: "",
-      athensTable: [{ one: "", two: "", mo: "", km: "", type: "", link: "" }],
+      athensTable: [
+        { one: "", two: "", mo: "", km1: "", km2: "", type: "", link: "" },
+      ],
       thessalonikiTable: [
-        { one: "", two: "", mo: "", km: "", type: "", link: "" },
+        { one: "", two: "", mo: "", km1: "", km2: "", type: "", link: "" },
       ],
       summaryTable: [
         { type: "", info1: "", mobileDe: "", autoscout24: "", info2: "" },
