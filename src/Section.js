@@ -8,6 +8,16 @@ function Section({ sectionData, onUpdate }) {
   const [sectionTitle, setSectionTitle] = useState(title);
   const [crashed, setCrashed] = useState(crashedLink || "");
 
+  const handleCrashedLinkChange = (e) => {
+    const newCrashedLink = e.target.value;
+    setCrashed(newCrashedLink);
+
+    onUpdate({
+      ...sectionData,
+      crashedLink: newCrashedLink,
+    });
+  };
+
   const handleTitleChange = (e) => {
     const newTitle = e.target.value;
     setSectionTitle(newTitle);
@@ -131,8 +141,8 @@ function Section({ sectionData, onUpdate }) {
           <label className="crashed-label">Crashed:</label>
           <input
             type="text"
-            value={crashed}
-            onChange={(e) => setCrashed(e.target.value)}
+            value={crashedLink}
+            onChange={handleCrashedLinkChange}
             className="crashed-input"
             placeholder="Enter Crashed Link"
           />
